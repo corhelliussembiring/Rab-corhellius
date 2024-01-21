@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Biaya Bangunan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+
+        input {
+            width: calc(100% - 22px);
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #totalBiaya {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+        <h1>Kalkulator Biaya Bangunan</h1>
+
+        <label for="luasBangunan">Luas Bangunan (m<sup>2</sup>):</label>
+        <input type="number" id="luasBangunan" placeholder="Masukkan luas bangunan" required>
+
+        <label for="biayaPerM2">Biaya Membangun Toko per m<sup>2</sup>:</label>
+        <input type="number" id="biayaPerM2" placeholder="Masukkan biaya per m2" required>
+
+        <button onclick="hitungBiaya()">Hitung Biaya</button>
+
+        <div id="totalBiaya"></div>
+    </div>
+
+    <script>
+        function hitungBiaya() {
+            var luasBangunanInput = document.getElementById('luasBangunan');
+            var biayaPerM2Input = document.getElementById('biayaPerM2');
+            var totalBiayaElement = document.getElementById('totalBiaya');
+
+            var luasBangunan = parseFloat(luasBangunanInput.value);
+            var biayaPerM2 = parseFloat(biayaPerM2Input.value);
+
+            // Validasi input
+            if (isNaN(luasBangunan) || isNaN(biayaPerM2) || luasBangunan <= 0 || biayaPerM2 <= 0) {
+                alert('Masukkan nilai yang valid untuk luas bangunan dan biaya per m2.');
+                return;
+            }
+
+            // Hitung total biaya
+            var totalBiaya = luasBangunan * biayaPerM2;
+
+            // Tampilkan hasil
+            totalBiayaElement.innerHTML = `<p>Total Biaya: Rp ${totalBiaya.toLocaleString()}</p>`;
+        }
+    </script>
+
+</body>
+
+</html>
